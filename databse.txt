@@ -1,0 +1,184 @@
+-- Migrations will appear here as you chat with AI
+
+create table users (
+  id bigint primary key generated always as identity,
+  email text not null unique,
+  password_hash text not null,
+  created_at timestamp with time zone default now()
+);
+
+create table projects (
+  id bigint primary key generated always as identity,
+  user_id bigint references users (id),
+  title text not null,
+  description text,
+  image_url text,
+  project_url text,
+  created_at timestamp with time zone default now()
+);
+
+alter table projects
+drop user_id;
+
+alter table projects
+add column user_id bigint references users (id);
+
+create table user_types (
+  id bigint primary key generated always as identity,
+  type_name text not null unique
+);
+
+alter table users
+add column user_type_id bigint references user_types (id);
+
+alter table projects
+add column subtitle text;
+
+alter table projects
+alter column subtitle
+set not null;
+
+alter table projects
+alter column description
+set not null;
+
+alter table projects
+alter column image_url
+set not null;
+
+alter table projects
+alter column created_at
+set not null;
+
+alter table projects
+alter column created_at
+set not null;
+
+alter table projects
+alter column user_id
+set not null;
+
+alter table users
+add column name text not null;
+
+alter table users
+add column description text;
+
+alter table users
+add column linkedin_url text;
+
+alter table users
+add column github_url text;
+
+alter table users
+add column stackoverflow_url text;
+
+alter table users
+add column phone_contact text;
+
+alter table users
+add column contact_email text;
+
+alter table users
+rename column phone_contact to contact_phone;
+
+alter table users
+add column nationality text;
+
+create table skills (
+  id bigint primary key generated always as identity,
+  name text not null
+);
+
+create table user_skills (
+  id bigint primary key generated always as identity,
+  user_id bigint references users (id) on delete cascade,
+  skill_id bigint references skills (id) on delete cascade,
+  proficiency int check (
+    proficiency >= 0
+    and proficiency <= 100
+  )
+);
+
+alter table skills
+add column importance numeric(2, 1) check (
+  importance >= 0
+  and importance <= 5
+);
+
+create table nationalities (
+  id bigint primary key generated always as identity,
+  name text not null,
+  flag_url text
+);
+
+alter table users
+drop nationality;
+
+alter table users
+add column nationality_id bigint references nationalities (id) on delete set null;
+
+alter table users
+add column linkedin_icon_url text;
+
+alter table users
+add column github_icon_url text;
+
+alter table users
+add column stackoverflow_icon_url text;
+
+create table social_networks (
+  id bigint primary key generated always as identity,
+  name text not null,
+  icon_url text
+);
+
+create table user_social_networks (
+  id bigint primary key generated always as identity,
+  user_id bigint references users (id) on delete cascade,
+  social_network_id bigint references social_networks (id) on delete cascade,
+  profile_url text
+);
+
+alter table users
+drop linkedin_url;
+
+alter table users
+drop github_url;
+
+alter table users
+drop stackoverflow_url;
+
+alter table users
+drop linkedin_icon_url;
+
+alter table users
+drop github_icon_url;
+
+alter table users
+drop stackoverflow_icon_url;
+
+create table statistics (
+  id bigint primary key generated always as identity,
+  name text not null,
+  description text
+);
+
+create table user_statistics (
+  id bigint primary key generated always as identity,
+  user_id bigint references users (id) on delete cascade,
+  statistic_id bigint references statistics (id) on delete cascade,
+  value numeric
+);
+
+create table personal_qualities (
+  id bigint primary key generated always as identity,
+  name text not null,
+  description text
+);
+
+create table user_personal_qualities (
+  id bigint primary key generated always as identity,
+  user_id bigint references users (id) on delete cascade,
+  quality_id bigint references personal_qualities (id) on delete cascade
+);
