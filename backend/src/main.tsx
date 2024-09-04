@@ -2,7 +2,7 @@ import { ChakraProvider } from '@chakra-ui/react'; // bibliotecas
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './App.tsx'
-import LoginForm from './components/Login/LoginPage.tsx'
+import LoginForm from './pages/LoginPage.tsx'
 import './index.css'
 
 
