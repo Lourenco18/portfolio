@@ -1,4 +1,12 @@
-
+.error-message{
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  border: solid 1px red;
+  border-radius: 7px;
+  padding: 4px;
+}
 .logo-container {
     text-align: center;
     margin-bottom: 20px;
@@ -43,6 +51,10 @@
 
 .container form{
     padding: 24px;
-    box-shadow: 16px 20px 29px -3px rgba(0,0,0,0.1);
+    box-shadow: 6px 10px 18px -9px #00d1cd;
     border-radius: 12px;
+}
+.title{
+    font-size: 24px;
+    margin-bottom: 20px;
 }

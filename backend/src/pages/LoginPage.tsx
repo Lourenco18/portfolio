@@ -79,6 +79,7 @@ function LoginForm() {
           <img src="../../..//Logo-Empresa/svg/logo-color.svg" alt="Company Logo" className="logo" />
         </div>
         <form onSubmit={handleSubmit}>
+          <div className="title">Login</div>
           <div className={`input-container ${emailError ? 'error' : ''}`}>
             <Email
               value={email}
@@ -86,7 +87,7 @@ function LoginForm() {
               name="email"
               label="Enter your email"
             />
-            {emailError && <span className="error-message">{emailError}</span>}
+            {emailError && <h2 className="error-message">{emailError}</h2>}
           </div>
           <div className={`input-container ${passwordError ? 'error' : ''}`}>
             <Password
