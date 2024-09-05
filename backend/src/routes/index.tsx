@@ -6,6 +6,7 @@ import {RegisterPage } from '../pages/RegisterPage';
 import {ResetPasswordPage } from '../pages/ResetPasswordPage';
 import {ForgotPasswordPage}  from '../pages/ForgotPasswordPage';
 import {NotFoundPage } from '../pages/NotFoundPage';
+
 export const AppRoutes = () => {   
     return (
         <Routes>

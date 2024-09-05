@@ -1,6 +1,10 @@
 import React, { ChangeEventHandler } from 'react';
-import { Input, InputGroup, InputRightElement, Button } from '@chakra-ui/react';
+import { TextField, IconButton, InputAdornment } from '@mui/material';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import './login.css';
+
+
 
 interface LoginProps {
   name: string;
@@ -13,14 +17,17 @@ export const Email: React.FC<LoginProps> = ({ name, value, onChange, label }) =>
   return (
     <div className='input-container'>
       <label className='input-label'>{label}</label>
-      <Input
+      <TextField
         className='input-text'
-        pr='4.5rem'
-        variant='outline'
+        variant='outlined'
         placeholder='email@gmail.com'
         name={name}
         value={value}
         onChange={onChange}
+        fullWidth
+        InputProps={{
+          style: { color: "#ffffff", backgroundColor: "#1f1f1f" }, // Cor de texto e fundo
+        }}
       />
     </div>
   );
@@ -33,23 +40,26 @@ export const Password: React.FC<LoginProps> = ({ name, value, onChange, label })
   return (
     <div className='input-container'>
       <label className='input-label'>{label}</label>
-      <InputGroup className='input-text' size='md'>
-        <Input
-         
-          pr='4.5rem'
-          type={show ? 'text' : 'password'}
-          placeholder='Enter password'
-          variant='outline'
-          name={name}
-          value={value}
-          onChange={onChange}
-        />
-        <InputRightElement width='4.5rem'>
-          <Button h='1.75rem' size='sm' onClick={handleClick}>
-            {show ? 'Hide' : 'Show'}
-          </Button>
-        </InputRightElement>
-      </InputGroup>
+      <TextField
+        className='input-text'
+        type={show ? 'text' : 'password'}
+        variant='outlined'
+        placeholder='Enter password'
+        name={name}
+        value={value}
+        onChange={onChange}
+        fullWidth
+        InputProps={{
+          style: { color: "#ffffff", backgroundColor: "#1f1f1f" }, // Cor de texto e fundo
+          endAdornment: (
+            <InputAdornment position='end'>
+              <IconButton onClick={handleClick} edge='end' style={{ color: "#ffffff" }}>
+                {show ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          ),
+        }}
+      />
     </div>
   );
 };

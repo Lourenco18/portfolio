@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { Email, Password } from '../components/Login/Login';
-
-
+import { Button } from '@mui/material';
 import '../components/Login/login.css';
 import '../index.css';
-
-
-
+import { ThemeProvider } from '@mui/material/styles';
+import { DarkTheme } from '../shared/themes/Dark'; // Tema que criamos
 
 function LoginForm() {
   const DefaultEmail = "daniellourenco897@gmail.com";
@@ -16,8 +14,6 @@ function LoginForm() {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [loginError, setLoginError] = useState('');
-  
-  
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -49,63 +45,64 @@ function LoginForm() {
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault(); // Previne o comportamento padrão do formulário
     setLoginError('');
-    if(password === ''){
+
+    // Validação dos campos
+    if (email === '') {
+      setEmailError('Email is required');
+    } 
+    if (password === '') {
       setPasswordError('Password is required');
     }
-    if(email === ''){
-      setEmailError('Email is required');
-    
-    
-    }else{
+
+    // Verificação das credenciais
+    if (email !== '' && password !== '') {
       if (email !== DefaultEmail) {
         setLoginError('Unauthorized email');
-      } else if (password !== DefaultPassword) {  
+      } else if (password !== DefaultPassword) {
         setPasswordError('Incorrect password');
       } else {
         setEmailError('');
         setPasswordError('');
         setLoginError('');
-  
         console.log('Login successful');
-        //entrar na pagina de admin
-        
-        
+        // Aqui você pode redirecionar para outra página ou realizar outras ações
       }
-      
     }
-    
   };
 
   return (
-    <div className='container'>
-       <div className="logo-container">
-        <img src="../../../Logo-Empresa/svg/logo-color.svg" alt="Company Logo" className="logo" />
+    <ThemeProvider theme={DarkTheme}>
+      <div className='container'>
+        <div className="logo-container">
+          <img src="../../..//Logo-Empresa/svg/logo-color.svg" alt="Company Logo" className="logo" />
+        </div>
+        <form onSubmit={handleSubmit}>
+          <div className={`input-container ${emailError ? 'error' : ''}`}>
+            <Email
+              value={email}
+              onChange={handleEmailChange}
+              name="email"
+              label="Enter your email"
+            />
+            {emailError && <span className="error-message">{emailError}</span>}
+          </div>
+          <div className={`input-container ${passwordError ? 'error' : ''}`}>
+            <Password
+              value={password}
+              onChange={handlePasswordChange}
+              name="password"
+              label="Enter your password"
+            />
+            {passwordError && <span className="error-message">{passwordError}</span>}
+          </div>
+          {/* O botão de submissão precisa ser do tipo submit */}
+          <Button type="submit" variant='contained' color='primary' className='submit'>Login</Button><br/>
+          {loginError && <span className="error-message">{loginError}</span>}
+        </form>
       </div>
-      <form onSubmit={handleSubmit}>
-        <div className={`input-container ${emailError ? 'error' : ''}`}>
-          <Email
-            value={email}
-            onChange={handleEmailChange}
-            name="email"
-            label="Enter your email"
-          />
-          {emailError && <span className="error-message">{emailError}</span>}
-        </div>
-        <div className={`input-container ${passwordError ? 'error' : ''}`}>
-          <Password
-            value={password}
-            onChange={handlePasswordChange}
-            name="password"
-            label="Enter your password"
-          />
-          {passwordError && <span className="error-message">{passwordError}</span>}
-        </div>
-        <button className='submit'>Login</button><br/>
-        {loginError && <span className="error-message">{loginError}</span>}
-      </form>
-    </div> 
+    </ThemeProvider>
   );
 }
 
