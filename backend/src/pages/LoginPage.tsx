@@ -5,6 +5,7 @@ import '../components/Login/login.css';
 import '../index.css';
 import { ThemeProvider } from '@mui/material/styles';
 import { DarkTheme } from '../shared/themes/Dark'; // Tema que criamos
+import { UseAppThemeContext } from '../shared/contexts';
 
 function LoginForm() {
   const DefaultEmail = "daniellourenco897@gmail.com";
@@ -72,6 +73,7 @@ function LoginForm() {
     }
   };
 
+  const { toggleTheme } = UseAppThemeContext() ;
   return (
     <ThemeProvider theme={DarkTheme}>
       <div className='container'>
@@ -99,7 +101,9 @@ function LoginForm() {
             {passwordError && <span className="error-message">{passwordError}</span>}
           </div>
           {/* O botão de submissão precisa ser do tipo submit */}
-          <Button type="submit" variant='contained' color='primary' className='submit'>Login</Button><br/>
+          <Button type="submit" variant='contained' color='primary' className='submit'>Login</Button><br/><br/>
+          <Button  variant='contained' color='primary' onClick={toggleTheme} className='submit'>Ligth/Lark</Button><br/>
+
           {loginError && <span className="error-message">{loginError}</span>}
         </form>
       </div>
