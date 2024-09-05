@@ -80,7 +80,9 @@ function LoginForm() {
 
   return (
     <div className='container'>
-      
+       <div className="logo-container">
+        <img src="../../../Logo-Empresa/svg/logo-color.svg" alt="Company Logo" className="logo" />
+      </div>
       <form onSubmit={handleSubmit}>
         <div className={`input-container ${emailError ? 'error' : ''}`}>
           <Email
