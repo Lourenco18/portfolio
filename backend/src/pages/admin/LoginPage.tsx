@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { Email, Password } from '../components/Login/Login';
+import { Email, Password } from '../../components/Login/Login';
 import { Button } from '@mui/material';
-import '../components/Login/login.css';
-import '../index.css';
+import '../../components/Login/login.css';
+import '../../index.css';
 import { ThemeProvider } from '@mui/material/styles';
-import { DarkTheme } from '../shared/themes/Dark'; // Tema que criamos
-
+import { DarkTheme } from '../../shared/themes/Dark'; // Tema que criamos
+import { useNavigate } from 'react-router-dom';
 
 
 function LoginForm() {
+  const navigate = useNavigate();
+
   const DefaultEmail = "daniellourenco897@gmail.com";
   const DefaultPassword = "daniel123";
   const [email, setEmail] = useState('');
@@ -49,7 +51,9 @@ function LoginForm() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Previne o comportamento padrão do formulário
     setLoginError('');
-
+   
+      
+ 
     // Validação dos campos
     if (email === '') {
       setEmailError('Email is required');
@@ -69,6 +73,8 @@ function LoginForm() {
         setPasswordError('');
         setLoginError('');
         console.log('Login successful');
+         
+        navigate("./../admin");
         // Aqui você pode redirecionar para outra página ou realizar outras ações
       }
     }
