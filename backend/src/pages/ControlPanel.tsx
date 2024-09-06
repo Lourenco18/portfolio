@@ -1,5 +1,10 @@
+import { Menu } from "../components/Menu/Menu";
 export const ControlPanel = () => {
-    return (
-        <p>ControlPanel</p>
-    );
-}
+  return (
+    <>
+      <Menu>
+        <p style={{ textAlign: "left", marginLeft: "16px" }}>ControlPanel</p>
+      </Menu>
+    </>
+  );
+};

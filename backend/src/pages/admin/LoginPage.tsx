@@ -12,7 +12,7 @@ function LoginForm() {
   const navigate = useNavigate();
 
   const DefaultEmail = "daniellourenco897@gmail.com";
-  const DefaultPassword = "daniel123";
+  const DefaultPassword = "admin";
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -94,7 +94,7 @@ function LoginForm() {
               value={email}
               onChange={handleEmailChange}
               name="email"
-              label="Enter your email"
+              label="Enter your email - daniellourenco897@gmail.com"
             />
             {emailError && <h2 className="error-message">{emailError}</h2>}
           </div>
@@ -103,7 +103,7 @@ function LoginForm() {
               value={password}
               onChange={handlePasswordChange}
               name="password"
-              label="Enter your password"
+              label="Enter your password - admin"
             />
             {passwordError && <span className="error-message">{passwordError}</span>}
           </div>
