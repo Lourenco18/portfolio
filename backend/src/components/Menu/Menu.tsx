@@ -1,6 +1,6 @@
 // Menu.tsx
 import React from "react";
-import { Box, Drawer, List, Collapse, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Drawer, List, Collapse, useTheme } from "@mui/material";
 import {
   Settings as SettingsIcon,
   People as PeopleIcon,
@@ -30,7 +30,7 @@ export const Menu: React.FC<MenuProps> = ({ children }) => {
   const [menuOpen] = React.useState(false);
   const [submenuOpen, setSubmenuOpen] = React.useState(true);
   const [hovered, setHovered] = React.useState(false);
-  const smDown = useMediaQuery(theme.breakpoints.down('sm'));
+
 
   const toggleSubmenu = () => setSubmenuOpen(!submenuOpen);
   const handleMouseEnter = () => setHovered(true);
@@ -39,7 +39,7 @@ export const Menu: React.FC<MenuProps> = ({ children }) => {
   return (
     <>
       <Drawer
-        variant={smDown ? 'temporary' : 'permanent'}
+        variant={'permanent'}
         open={menuOpen || hovered}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -58,22 +58,22 @@ export const Menu: React.FC<MenuProps> = ({ children }) => {
 
           <Box flex={1}>
             <List component="nav">
-              <MenuItem to={"./../controlpanel"}icon={<SettingsIcon />} label="Control Panel" open={menuOpen || hovered} />
-              <MenuItem to={"./../tablepage"}icon={<PeopleIcon />} label="Users" open={menuOpen || hovered} />
-              <MenuItem to={"./../tablepage"}icon={<BuildIcon />} label="Operations" open={menuOpen || hovered} />
-              <MenuItem to={"./../tablepage"}icon={<FolderIcon />} label="All Projects" open={menuOpen || hovered} />
-              <MenuItem to= {""}icon={<TableChartIcon />} label="Extra Tables" open={menuOpen || hovered} onClick={toggleSubmenu}>
+              <MenuItem operationID ={1} dad={1} to={"./../controlpanel"}icon={<SettingsIcon />} label="Control Panel" open={menuOpen || hovered} />
+              <MenuItem operationID ={2} dad={0} to={"./../tablepage"}icon={<PeopleIcon />} label="Users" open={menuOpen || hovered} />
+              <MenuItem operationID ={3} dad={0} to={"./../tablepage"}icon={<BuildIcon />} label="Operations" open={menuOpen || hovered} />
+              <MenuItem operationID ={4} dad={0} to={"./../tablepage"}icon={<FolderIcon />} label="All Projects" open={menuOpen || hovered} />
+              <MenuItem operationID ={5} dad={1} to= {"./../controlpanel"}icon={<TableChartIcon />} label="Extra Tables" open={menuOpen || hovered} onClick={toggleSubmenu}>
                 {submenuOpen ? <ExpandLess sx={{ color: "#ffffff" }} /> : <ExpandMore sx={{ color: "#ffffff" }} />}
               </MenuItem>
 
               <Collapse in={submenuOpen && (menuOpen || hovered)} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  <SubMenuItem to={"./../listpage"} icon={<StarBorder />} label="Skills"  />
-                  <SubMenuItem to={"./../listpage"} icon={<EmojiFlagsIcon />} label="Nationalities" />
-                  <SubMenuItem to={"./../listpage"} icon={<FemaleIcon />} label="Gender" />
-                  <SubMenuItem to={"./../listpage"} icon={<BarChartIcon />} label="Statistics" />
-                  <SubMenuItem to={"./../listpage"} icon={<BusinessIcon />} label="Companies" />
-                  <SubMenuItem to={"./../listpage"} icon={<GroupIcon />} label="Groups" />
+                  <SubMenuItem operationID ={6} dad={0} to={"./../listpage"} icon={<StarBorder />} label="Skills"  />
+                  <SubMenuItem operationID ={7} dad={0} to={"./../listpage"} icon={<EmojiFlagsIcon />} label="Nationalities" />
+                  <SubMenuItem operationID ={8} dad={0} to={"./../listpage"} icon={<FemaleIcon />} label="Gender" />
+                  <SubMenuItem operationID ={9} dad={0} to={"./../listpage"} icon={<BarChartIcon />} label="Statistics" />
+                  <SubMenuItem operationID ={10} dad={0} to={"./../listpage"} icon={<BusinessIcon />} label="Companies" />
+                  <SubMenuItem operationID ={11} dad={0} to={"./../listpage"} icon={<GroupIcon />} label="Groups" />
                 </List>
               </Collapse>
             </List>

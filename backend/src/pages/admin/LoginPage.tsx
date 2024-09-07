@@ -74,7 +74,7 @@ function LoginForm() {
         setLoginError('');
         console.log('Login successful');
          
-        navigate("./../admin");
+        navigate("./../controlpanel");
         // Aqui você pode redirecionar para outra página ou realizar outras ações
       }
     }
@@ -94,7 +94,7 @@ function LoginForm() {
               value={email}
               onChange={handleEmailChange}
               name="email"
-              label="Enter your email - daniellourenco897@gmail.com"
+              label="Enter your email  "
             />
             {emailError && <h2 className="error-message">{emailError}</h2>}
           </div>
@@ -103,7 +103,7 @@ function LoginForm() {
               value={password}
               onChange={handlePasswordChange}
               name="password"
-              label="Enter your password - admin"
+              label="Enter your password "
             />
             {passwordError && <span className="error-message">{passwordError}</span>}
           </div>

@@ -2,6 +2,7 @@ import React from "react";
 import { Avatar, Box, ListItemButton, ListItemIcon, ListItemText, useTheme } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
+
 interface MenuItemProps {
   icon: React.ReactNode;
   label: string;
@@ -9,24 +10,30 @@ interface MenuItemProps {
   to: string;
   onClick?: () => void | undefined;
   children?: React.ReactNode;
+  operationID: number;
+  dad: number;
 }
 
 interface SubMenuItemProps {
   icon: React.ReactNode;
   label: string;
   to: string;
+  operationID: number;
+  dad: number;
   onClick?: () => void | undefined;
 }
 
 // Componente para os itens do menu principal
-export const MenuItem: React.FC<MenuItemProps> = ({ icon, label, open, onClick, children, to }) => {
+export const MenuItem: React.FC<MenuItemProps> = ({ icon, label, open, onClick, children, to, operationID, dad }) => {
+ 
     const navigate = useNavigate();
     const handleClick=()=>{
-        navigate(to);
+      navigate(to, { state: { operationID: operationID, dad: dad } });
         onClick?.();
     };
+ 
   return (
-    <ListItemButton onClick={handleClick}>
+    <ListItemButton  onClick={handleClick}>
       <ListItemIcon
         sx={{
           marginRight: "10px",
@@ -44,10 +51,10 @@ export const MenuItem: React.FC<MenuItemProps> = ({ icon, label, open, onClick, 
 };
 
 // Componente para os itens do submenu
-export const SubMenuItem: React.FC<SubMenuItemProps> = ({ icon, to, label, onClick }) => {
+export const SubMenuItem: React.FC<SubMenuItemProps> = ({ icon, to, label, onClick, operationID, dad }) => {
     const navigate = useNavigate();
     const handleClick=()=>{
-        navigate(to);
+      navigate(to, { state: { operationID: operationID, dad: dad } });
         onClick?.();
     };
   return (

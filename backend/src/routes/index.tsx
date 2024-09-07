@@ -1,7 +1,7 @@
 import { Routes,Route,  Navigate } from 'react-router-dom';
 import LoginPage from '../pages/admin/LoginPage';
-import  {AdminPage} from '../pages/AdminPage';
-import { UserPage } from '../pages/UserPage';
+
+
 import { ControlPanel } from '../pages/ControlPanel';
 import { ListPage } from '../pages/ListPage.tsx';
 import { TablePage } from '../pages/TablePage.tsx';
@@ -20,8 +20,8 @@ export const AppRoutes = () => {
           <Route path="/controlpanel" element={<ControlPanel />} />
           <Route path="/listpage" element={<ListPage />} />
           <Route path="/tablepage" element={<TablePage />} />
-          <Route path="/admin" element={<AdminPage />} />
-          <Route path="/user" element={<UserPage />} />
+          
+          
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />
