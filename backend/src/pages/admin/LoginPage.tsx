@@ -74,7 +74,7 @@ function LoginForm() {
         setLoginError('');
         console.log('Login successful');
          
-        navigate("./../controlpanel");
+        navigate("./../controlpanel", { state: { operationID: 1, dad: 1 } });
         // Aqui você pode redirecionar para outra página ou realizar outras ações
       }
     }
