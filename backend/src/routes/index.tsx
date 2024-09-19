@@ -20,8 +20,6 @@ export const AppRoutes = () => {
           <Route path="/controlpanel" element={<ControlPanel />} />
           <Route path="/listpage" element={<ListPage />} />
           <Route path="/tablepage" element={<TablePage />} />
-          
-          
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />

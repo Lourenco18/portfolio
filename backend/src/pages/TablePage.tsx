@@ -1,5 +1,6 @@
 import { Menu } from "../components/Menu/Menu";
 import { useLocation } from 'react-router-dom';
+import EnhancedTable from '../components/TableComponent';
 export const TablePage = () => {
   const location = useLocation();
   const { operationID, dad } = location.state || {};
@@ -20,8 +21,11 @@ export const TablePage = () => {
         <p>Dad não disponível</p>
         
       )}
-      
+
+       <EnhancedTable >
+       </EnhancedTable >
       </Menu>
+     
     </>
   );
 };
